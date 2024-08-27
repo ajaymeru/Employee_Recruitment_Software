@@ -1,0 +1,16 @@
+{
+    "firstname": "ajay",
+    "lastname": "meru",
+    "email": "ajaymeru02@gmail.com",
+    "number": "9182173097",
+    "password": "*********"
+}
+
+{
+    "companyName": "inkprog",
+    "email": "inkprog@gmail.com",
+     "number": "9182173097",
+     "companytype": "software"
+     "address": "hyd",
+      "password": "*********"
+}

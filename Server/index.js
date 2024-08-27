@@ -13,10 +13,12 @@ app.get("/", (req, res) => {
     res.send("Hello World")
 })
 
+// Require Routes
+const userroutes = require("./routes/userRoutes")
+
 // Routes
-// employer
-const employerRoutes = require("./routes/employerRoutes")
-app.use("/api/employer", employerRoutes)
+app.use("/api/v1/users", userroutes)
+
 
 // connecting to port
 const port = process.env.PORT || 4000
