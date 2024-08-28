@@ -36,6 +36,8 @@ const userSchema = new mongoose.Schema({
         enum: ["EMPLOYER", "EMPLOYEE"],
         required: true
     }
+}, {
+    timestamps: true
 })
 
 // Statics signup func

@@ -15,9 +15,11 @@ app.get("/", (req, res) => {
 
 // Require Routes
 const userroutes = require("./routes/userRoutes")
+const jobRoutes = require("./routes/jobRoutes")
 
 // Routes
 app.use("/api/v1/users", userroutes)
+app.use("/api/v1/joblists", jobRoutes)
 
 
 // connecting to port
