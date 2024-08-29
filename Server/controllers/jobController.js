@@ -1,11 +1,23 @@
 const { Joblist } = require("../models/jobSchema");
+const { v4: uuidv4 } = require("uuid")
 
-// global to acces to CRUD operation
 
-// Get all jobs
-const showallJobs = async (req, res) => {
+// get all jobs globally
+const getJobs = async (req, res) => {
     try {
-        const jobs = await Joblist.find().sort({ createdAt: -1 });
+        const jobs = await Joblist.find();
+        res.status(200).json(jobs);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
+}
+// Get all jobs by USER specific
+const showallJobs = async (req, res) => {
+    const employer_id = req.user._id
+    // console.log(employer_id);
+    try {
+        const jobs = await Joblist.find({ employer_id: employer_id }).sort({ createdAt: -1 });
         res.status(200).json(jobs);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -15,9 +27,10 @@ const showallJobs = async (req, res) => {
 // Create a job post
 const createJobPost = async (req, res) => {
     const { technologies, experience, location, graduate, language, noticeperiod } = req.body;
-
+    const employer_id = req.user._id
     try {
-        const newjob = new Joblist({ technologies, experience, location, graduate, language, noticeperiod });
+        const jobId = uuidv4();
+        const newjob = new Joblist({ technologies, experience, location, graduate, language, noticeperiod, employer_id, jobId });
         const job = await newjob.save();
         res.status(200).json({ job });
     } catch (err) {
@@ -25,11 +38,23 @@ const createJobPost = async (req, res) => {
     }
 };
 
+// get jobb by idy
+const getjobByID = async (req, res) => {
+    const employer_id = req.user._id
+    const id = req.params.jobId
+    const job = await Joblist.find({ employer_id: employer_id, jobId: id })
+    if (!job) {
+        return res.status(404).json({ message: "job not foundd" })
+    }
+    res.status(200).json({ job })
+}
+
 // Edit||update a job post
 const editJobpost = async (req, res) => {
     try {
-        const id = req.params.id
-        const job = await Joblist.findByIdAndUpdate({ _id: id }, req.body, { new: true })
+        const id = req.params.jobId
+        const employer_id = req.user._id
+        const job = await Joblist.findOneAndUpdate({ employer_id: employer_id, jobId: id }, req.body, { new: true })
         if (!job) {
             return res.status(404).json({ message: "Job not found" });
         }
@@ -43,8 +68,9 @@ const editJobpost = async (req, res) => {
 // Delete a job post
 const deletejob = async (req, res) => {
     try {
-        const id = req.params.id
-        const job = await Joblist.findByIdAndDelete({ _id: id })
+        const id = req.params.jobId
+        const employer_id = req.user._id
+        const job = await Joblist.findOneAndDelete({ employer_id: employer_id, jobId: id })
         res.status(200).json({ job })
     }
     catch (err) {
@@ -52,4 +78,4 @@ const deletejob = async (req, res) => {
     }
 }
 
-module.exports = { createJobPost, showallJobs, editJobpost, deletejob }
+module.exports = { createJobPost, showallJobs, editJobpost, deletejob, getjobByID, getJobs }

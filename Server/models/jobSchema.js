@@ -19,6 +19,14 @@ const jobSchema = new mongoose.Schema({
     },
     noticeperiod: {
         type: String
+    },
+    employer_id: {
+        type: String
+    },
+    jobId: {
+        type: String,
+        unique: true,
+        required: true
     }
 },
     {

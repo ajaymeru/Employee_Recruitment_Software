@@ -4,13 +4,11 @@ const createtoken = require("../utils/token")
 // signup
 const usersignup = async (req, res) => {
     const data = req.body
-    console.log(data);
-
+    // console.log(data);
     try {
         const user = await User.signup(data)
-
-        const token = createtoken(user._id, user.role)
-        res.status(201).json({ message: `${user.role} Account crreated Sucessfully`, token })
+        // const token = createtoken(user._id, user.role)
+        res.status(201).json({ message: ` Account crreated Sucessfully` })
     }
     catch (err) {
         res.status(400).json({ message: err.message })

@@ -25,6 +25,16 @@ const userRoleMiddleware = async (req, res, next) => {
     }
 }
 
+// function to find employer
+function checkRole(role) {
+    return (req, res, next) => {
+        console.log(req.user.role);
+        if (req.user.role !== role) {
 
+            return res.status(403).json({ message: "User not authorised" })
+        }
+        next();
+    };
+}
 
-module.exports = userRoleMiddleware
+module.exports = { userRoleMiddleware, checkRole }

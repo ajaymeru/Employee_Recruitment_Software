@@ -1,20 +1,25 @@
 const express = require("express")
 const router = express.Router()
 
-// require all from job controller
-const { createJobPost, showallJobs, editJobpost, deletejob } = require("../controllers/jobController")
+const { createJobPost, showallJobs, getjobByID, editJobpost, deletejob, getJobs } = require("../controllers/jobController")
 
+const { userRoleMiddleware, checkRole } = require("../middleware/usermiddleware")
 
-// show all data 
+router.use(userRoleMiddleware)
+// all users job posts
+router.get("/alljobs", checkRole("EMPLOYEE"), getJobs)
+
+// Employer perform Actions
+router.use(checkRole("EMPLOYER"))
+
 router.get("/", showallJobs)
 
-// post data
 router.post("/", createJobPost)
 
-// update
-router.patch("/:id", editJobpost);
+router.get("/:jobId", getjobByID)
 
-// delete
-router.delete("/:id", deletejob)
+router.patch("/:jobId", editJobpost);
+
+router.delete("/:jobId", deletejob)
 
 module.exports = router
