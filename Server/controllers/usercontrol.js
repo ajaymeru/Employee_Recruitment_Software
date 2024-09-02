@@ -4,10 +4,8 @@ const createtoken = require("../utils/token")
 // signup
 const usersignup = async (req, res) => {
     const data = req.body
-    // console.log(data);
     try {
         const user = await User.signup(data)
-        // const token = createtoken(user._id, user.role)
         res.status(201).json({ message: ` Account crreated Sucessfully` })
     }
     catch (err) {
@@ -21,8 +19,7 @@ const userlogin = async (req, res) => {
     try {
         const user = await User.login(email, password)
         const token = createtoken(user._id, user.role)
-        console.log(token);
-
+        // console.log(token);
         res.status(200).json({ message: `${user.role} Login sucessfull`, token })
 
     } catch (err) {
@@ -33,7 +30,6 @@ const userlogin = async (req, res) => {
 // get user details
 const getUserDetails = async (req, res) => {
     const user_id = req.user._id
-    // console.log(user_id)
     try {
         const user = await User.findById({ _id: user_id })
         console.log(user);

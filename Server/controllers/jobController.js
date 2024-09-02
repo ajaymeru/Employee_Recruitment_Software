@@ -40,13 +40,25 @@ const createJobPost = async (req, res) => {
 
 // get jobb by idy
 const getjobByID = async (req, res) => {
-    const employer_id = req.user._id
-    const id = req.params.jobId
-    const job = await Joblist.find({ employer_id: employer_id, jobId: id })
-    if (!job) {
-        return res.status(404).json({ message: "job not foundd" })
+    const { id, role } = req.user
+    console.log(id);
+
+    const { jobId } = req.params
+    if (role === "EMPLOYEE") {
+        const job = await Joblist.find({ jobId: jobId })
+        if (!job) {
+            return res.status(404).json({ message: "job not foundd" })
+        }
+        return res.status(200).json({ job })
     }
-    res.status(200).json({ job })
+    else if (role === "EMPLOYER") {
+        const job = await Joblist.find({ employer_id: id, jobId: jobId })
+        if (!job) {
+            return res.status(404).json({ message: "job not foundd" })
+        }
+        return res.status(200).json({ job })
+    }
+
 }
 
 // Edit||update a job post
@@ -78,4 +90,53 @@ const deletejob = async (req, res) => {
     }
 }
 
-module.exports = { createJobPost, showallJobs, editJobpost, deletejob, getjobByID, getJobs }
+const applyForJob = async (req, res) => {
+    const { jobId } = req.params
+    const employee_Id = req.user._id
+    try {
+        const job = await Joblist.findOne({ jobId: jobId })
+        if (!job) {
+            return res.status(404).json({ message: "Job not found" })
+        }
+        if (job.employee_Id.includes(employee_Id)) {
+            return res.status(400).json({ message: "Already applied for this role " })
+        }
+        job.jobStatus = "APPLIED"
+        job.employee_Id.push(employee_Id)
+        await job.save()
+        return res.status(200).json({ message: "job applied sucessfully", job })
+    } catch (err) {
+        return res.status(500).json({ message: err.message })
+    }
+}
+
+const appliedfetchjobs = async (req, res) => {
+    const userId = req.user._id;
+    const userRole = req.user.role;
+    try {
+        let jobs;
+        if (userRole === "EMPLOYEE") {
+            jobs = await Joblist.find({ employee_Id: userId, jobStatus: "APPLIED" });
+            if (jobs.length === 0) {
+                return res.status(404).json({ message: "No jobs found" });
+            }
+            return res.status(200).json({ jobs });
+        } else if (userRole === "EMPLOYER") {
+            jobs = await Joblist.find({ employer_id: userId, jobStatus: "APPLIED" }).populate('employer_id', 'firstname lastname email');
+            if (jobs.length === 0) {
+                return res.status(404).json({ message: "No applications found" });
+            }
+            const employees = jobs.map(job => ({
+                jobId: job.jobId,
+                employees: job.employee_Id
+            }))
+            return res.status(200).json({ employees });
+        } else {
+            return res.status(400).json({ message: "Invalid user role" });
+        }
+    } catch (err) {
+        return res.status(400).json({ message: err.message });
+    }
+};
+
+module.exports = { createJobPost, showallJobs, editJobpost, deletejob, getjobByID, getJobs, applyForJob, appliedfetchjobs }

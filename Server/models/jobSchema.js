@@ -27,18 +27,21 @@ const jobSchema = new mongoose.Schema({
         type: String,
         unique: true,
         required: true
-    }
+    },
+    jobStatus: {
+        type: String,
+        enum: ["APPLIED", "NOT APPLIED"],
+        default: "NOT APPLIED"
+    },
+    employee_Id: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 },
     {
         timestamps: true
     }
 )
-
-// jobSchema.statics.createPost = async (req, res) => {
-// const { technologies, experience, location, graduate, language, noticeperiod } = data;
-
-// }
-
 const Joblist = mongoose.model("Joblist", jobSchema);
 
 module.exports = { Joblist };

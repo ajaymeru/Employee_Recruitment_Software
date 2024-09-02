@@ -6,20 +6,14 @@ const { usersignup, userlogin, getUserDetails, updateUser } = require("../contro
 
 const {userRoleMiddleware} = require("../middleware/usermiddleware")
 
-
-// sign upo
 router.post("/signup", usersignup)
 
-// login user
 router.post("/login", userlogin)
 
 router.use(userRoleMiddleware)
 
-
-// get user details
 router.get("/", getUserDetails)
 
-// edit details
 router.patch("/edit", updateUser)
 
 module.exports = router

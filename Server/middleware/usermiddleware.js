@@ -4,7 +4,6 @@ require("dotenv").config()
 
 const userRoleMiddleware = async (req, res, next) => {
     const { authorization } = req.headers;
-
     if (!authorization) {
         return res.status(401).json({ message: "Unauthorized" })
     }
@@ -16,7 +15,6 @@ const userRoleMiddleware = async (req, res, next) => {
     try {
         // reverse
         const { _id, role } = jwt.verify(token, process.env.JWT_SECRET);
-        // console.log(_id, role);
         const user = await User.findById(_id);
         req.user = user;
         next()
@@ -25,12 +23,9 @@ const userRoleMiddleware = async (req, res, next) => {
     }
 }
 
-// function to find employer
 function checkRole(role) {
     return (req, res, next) => {
-        console.log(req.user.role);
         if (req.user.role !== role) {
-
             return res.status(403).json({ message: "User not authorised" })
         }
         next();
