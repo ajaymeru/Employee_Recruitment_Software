@@ -1,5 +1,7 @@
 import React from 'react';
-import { FaSearch, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaSearch, FaMapMarkerAlt, FaAngleDoubleRight, FaBuilding } from 'react-icons/fa';
+import { SiGnuprivacyguard } from "react-icons/si";
+import { MdCloudUpload } from "react-icons/md";
 import { motion } from 'framer-motion';
 import Illustration from "./Assets/Illustration.png";
 import waves from "./Assets/waves.svg";
@@ -57,8 +59,41 @@ const Home = () => {
                 </div>
 
                 <div className="process">
-                    
+                    <div className="process-text">
+                        <h2>Land Your Dream Job</h2>
+                        <p>Increase your chances of working with one of the Top Corporates</p>
+                    </div>
+                    <div className="steps">
+                        <div className="step">
+                            <div className="icon">
+                                <SiGnuprivacyguard />
+                            </div>
+                            <p>Register</p>
+                        </div>
+
+                        <div className="step">
+                            <div className="icon">
+                                <MdCloudUpload />
+                            </div>
+                            <p>Upload Resume</p>
+                        </div>
+
+                        <div className="step">
+                            <div className="icon">
+                                <FaAngleDoubleRight />
+                            </div>
+                            <p>Apply Job</p>
+                        </div>
+
+                        <div className="step">
+                            <div className="icon">
+                                <FaBuilding />
+                            </div>
+                            <p>Get Hired</p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </>
     );
