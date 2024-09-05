@@ -68,7 +68,7 @@ const userSchema = new mongoose.Schema({
     noticePeriod: {
         type: String
     },
-    curentCompany: {
+    currentCompany: {
         type: String
     },
     otp: {
@@ -89,7 +89,7 @@ const userSchema = new mongoose.Schema({
 
 
 userSchema.statics.signup = async (data) => {
-    const { companyName, email, number, companytype, address, firstname, lastname, password, role, technologies, experience, location, graduate, languages, noticePeriod, curentCompany } = data
+    const { companyName, email, number, companytype, address, firstname, lastname, password, role, technologies, experience, location, graduate, languages, noticePeriod, currentCompany } = data
     const user = await User.findOne({ email })
     if (user) {
         throw new Error("Email already in use")
@@ -104,7 +104,7 @@ userSchema.statics.signup = async (data) => {
         companyName, email, number, companytype,
         address, firstname, lastname, password: hashedPassword,
         role, technologies, experience, location, graduate,
-        languages, noticePeriod, curentCompany, otp, otpExpires
+        languages, noticePeriod, currentCompany, otp, otpExpires
     })
     await newUser.save()
     await transporter.sendMail({

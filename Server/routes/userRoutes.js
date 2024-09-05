@@ -5,8 +5,9 @@ const router = express.Router()
 const { usersignup, userlogin, getUserDetails, updateUser, verifyOTP, forgotpassword, resetPassword, changePassword } = require("../controllers/usercontrol")
 
 const { userRoleMiddleware } = require("../middleware/usermiddleware")
+const { userValidationSchema } = require("../services/schemaValidation")
 
-router.post("/signup", usersignup)
+router.post("/signup", userValidationSchema, usersignup)
 
 router.post("/login", userlogin)
 
