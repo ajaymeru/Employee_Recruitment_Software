@@ -28,11 +28,11 @@ const jobSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    jobStatus: {
-        type: String,
-        enum: ["APPLIED", "NOT APPLIED"],
-        default: "NOT APPLIED"
-    },
+    // jobStatus: {
+    //     type: String,
+    //     enum: ["APPLIED", "NOT APPLIED"],
+    //     default: "NOT APPLIED"
+    // },
     employee_Id: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

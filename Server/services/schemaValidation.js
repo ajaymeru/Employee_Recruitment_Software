@@ -140,14 +140,4 @@ const userValidationSchema = checkSchema({
     },
 });
 
-// const validate = (req, res, next) => {
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//         res.status(422).json({ "status": "Validation Error" });
-//     } else {
-//         res.status(200).json({ "status": "Validation Sucessfull" });
-//     }
-//     next();
-// };
-
 module.exports = { userValidationSchema };

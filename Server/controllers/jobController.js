@@ -1,4 +1,5 @@
 const { Joblist } = require("../models/jobSchema");
+const jobStatus  = require("../models/JobStatus")
 const { v4: uuidv4 } = require("uuid")
 
 
@@ -93,21 +94,33 @@ const deletejob = async (req, res) => {
 const applyForJob = async (req, res) => {
     const { jobId } = req.params
     const employee_Id = req.user._id
+    console.log(employee_Id);
     try {
-        const job = await Joblist.findOne({ jobId: jobId })
+        const [job] = await Joblist.find({ jobId: jobId })
         if (!job) {
             return res.status(404).json({ message: "Job not found" })
         }
-        if (job.employee_Id.includes(employee_Id)) {
+        console.log(job);
+        const employer_id = job.employer_id
+        console.log(employer_id);
+        const status = await jobStatus.find({ employee_Id: employee_Id, jobId: jobId })
+        console.log(status);
+        
+
+        if (status.length > 0) {
             return res.status(400).json({ message: "Already applied for this role " })
         }
-        job.jobStatus = "APPLIED"
-        job.employee_Id.push(employee_Id)
-        await job.save()
-        return res.status(200).json({ message: "job applied sucessfully", job })
-    } catch (err) {
-        return res.status(500).json({ message: err.message })
+        const newJobStatus = new jobStatus({
+            jobId: jobId,
+            employer_id: employer_id,
+            employee_Id: employee_Id
+        })
+        await newJobStatus.save()
+        return res.status(200).json({ message: "job applied sucessfully" })
+    } catch (error) {
+        return res.status(400).json({ message: error.message })
     }
+
 }
 
 const appliedfetchjobs = async (req, res) => {
@@ -116,13 +129,13 @@ const appliedfetchjobs = async (req, res) => {
     try {
         let jobs;
         if (userRole === "EMPLOYEE") {
-            jobs = await Joblist.find({ employee_Id: userId, jobStatus: "APPLIED" });
+            jobs = await jobStatus.find({ employee_Id: userId, jobApplyStatus: "APPLIED" });
             if (jobs.length === 0) {
                 return res.status(404).json({ message: "No jobs found" });
             }
             return res.status(200).json({ jobs });
         } else if (userRole === "EMPLOYER") {
-            jobs = await Joblist.find({ employer_id: userId, jobStatus: "APPLIED" }).populate('employer_id', 'firstname lastname email');
+            jobs = await jobStatus.find({ employer_id: userId, jobApplyStatus: "APPLIED" });
             if (jobs.length === 0) {
                 return res.status(404).json({ message: "No applications found" });
             }

@@ -11,6 +11,7 @@ router.post("/signup", userValidationSchema, usersignup)
 
 router.post("/login", userlogin)
 
+
 router.post("/verify-otp", verifyOTP);
 
 router.post("/resend-otp", forgotpassword) //for resend otp
