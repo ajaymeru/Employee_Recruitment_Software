@@ -1,0 +1,198 @@
+:root {
+
+
+    --white: white;
+    --blue: #2E55FA
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h6 {
+    margin: 0;
+}
+
+body {}
+
+
+
+a {
+    text-decoration: none;
+}
+
+.line-shade {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: #2E55FA;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+    gap: 10px;
+    font-weight: bold;
+    /* border: 3px solid #ffffff4d; */
+    outline: none;
+    border: none;
+    overflow: hidden;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.line-shade:hover::before {
+    animation: shine 1.5s ease-out infinite;
+}
+
+.line-shade::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(120deg,
+            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0) 70%);
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+}
+
+@keyframes shine {
+    0% {
+        left: -100px;
+    }
+
+    60% {
+        left: 100%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+.fa {
+    color: #2E55FA;
+    font-weight: bold;
+}
+
+input {
+    border: none;
+
+}
+
+/* ______________Sparkle Button_________________ */
+.sparklebtn {
+    position: relative;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+    transition: all 5s ease;
+}
+
+.sparklebtn.clicked {
+    transform: scale(0.96);
+}
+
+.sparklebtn:before,
+.sparklebtn:after {
+    position: absolute;
+    content: "";
+    width: 150%;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: -1000;
+    background-repeat: no-repeat;
+}
+
+.sparklebtn.clicked:before {
+    top: -70%;
+    background-image: radial-gradient(circle, #a89215 20%, transparent 20%),
+        radial-gradient(circle, transparent 20%, #13a5be 20%, transparent 30%),
+        radial-gradient(circle, #a3b82d 20%, transparent 20%),
+        radial-gradient(circle, #590cbe 20%, transparent 20%),
+        radial-gradient(circle, transparent 10%, #bd1717 15%, transparent 20%),
+        radial-gradient(circle, #2a7ce8 20%, transparent 20%),
+        radial-gradient(circle, #30e82a 20%, transparent 20%),
+        radial-gradient(circle, #e92c75 20%, transparent 20%),
+        radial-gradient(circle, #914fe7 20%, transparent 20%),
+        radial-gradient(circle, #f9c74f 20%, transparent 20%),
+        radial-gradient(circle, #1f8c8c 20%, transparent 20%),
+        radial-gradient(circle, #ff6f61 20%, transparent 20%),
+        radial-gradient(circle, #7a2d9b 20%, transparent 20%);
+    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
+        10% 10%, 18% 18%, 12% 12%, 18% 18%, 20% 20%, 15% 15%;
+    background-position: 50% 120%;
+    animation: greentopBubbles 1s ease;
+}
+
+@keyframes greentopBubbles {
+    0% {
+        background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+            40% 90%, 55% 90%, 70% 90%, 85% 90%, 95% 90%, 10% 90%, 50% 90%;
+    }
+
+    50% {
+        background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+            50% 50%, 65% 20%, 90% 30%, 75% 40%, 35% 60%, 55% 50%, 85% 20%;
+    }
+
+    100% {
+        background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+            50% 40%, 65% 10%, 90% 20%, 80% 10%, 55% 30%, 30% 40%, 75% 20%;
+        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+}
+
+.sparklebtn.clicked:after {
+    bottom: -70%;
+    background-image: radial-gradient(circle, #ff93db 20%, transparent 20%),
+        radial-gradient(circle, #2ae8df 20%, transparent 20%),
+        radial-gradient(circle, transparent 10%, #71ffbd 15%, transparent 20%),
+        radial-gradient(circle, #2a9ce8 20%, transparent 20%),
+        radial-gradient(circle, #7814fc 20%, transparent 20%),
+        radial-gradient(circle, #73e4f8 20%, transparent 20%),
+        radial-gradient(circle, #f8d3a9 20%, transparent 20%),
+        radial-gradient(circle, #f9a826 20%, transparent 20%),
+        radial-gradient(circle, #d4a8d0 20%, transparent 20%),
+        radial-gradient(circle, #a1c4fd 20%, transparent 20%),
+        radial-gradient(circle, #a9d8d2 20%, transparent 20%);
+    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%,
+        15% 15%, 18% 18%, 20% 20%;
+    background-position: 50% 0%;
+    animation: greenbottomBubbles 1s ease;
+}
+
+@keyframes greenbottomBubbles {
+    0% {
+        background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+            70% -10%, 70% 0%, 90% -10%, 30% -10%, 50% -10%;
+    }
+
+    50% {
+        background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+            105% 0%, 60% -10%, 90% 0%, 35% -20%;
+    }
+
+    100% {
+        background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+            110% 10%, 50% 20%, 80% 20%, 35% 10%;
+        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+}
