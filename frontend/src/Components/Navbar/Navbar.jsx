@@ -25,7 +25,7 @@ const Navbar = () => {
 
             <div className="right-section">
                 <div className="sign-login-btns">
-                    <button className='line-shade'>Sign-up</button>
+                    <Link to="/signup"><button className='line-shade'>Sign-up</button></Link>
                     <button className='line-shade'>Login</button>
                 </div>
             </div>

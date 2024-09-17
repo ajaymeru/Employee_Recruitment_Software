@@ -1,23 +1,19 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose');
 
-const imageUpload = mongoose.Schema({
+const imageSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: 'User',
+        required: true
     },
-    imageName: {
+    image: {
         type: String,
         required: true
     },
     imagePath: {
         type: String,
         required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
     }
-})
+});
 
-const image = mongoose.model("image", imageUpload)
-module.exports = image
+module.exports = mongoose.model('Image', imageSchema);

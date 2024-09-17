@@ -1,0 +1,100 @@
+.Testimonials {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem 0;
+
+    .TestimonialsText {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+
+        p:nth-child(1) {
+            color: var(--blue);
+            line-height: 1rem;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        h4 {
+            line-height: 2rem;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        p:nth-child(3) {
+            width: 60%;
+            line-height: 1.5rem;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+    }
+
+    .Testimonialscards {
+        // display: flex;
+        // gap: 1rem;
+        // flex-wrap: wrap;
+        // justify-content: center;
+
+        // .slick-slide{
+        //     padding: 0 0.5rem;
+        // }
+
+        .Testimonialscard {
+            padding: 40px 20px;
+            background-color: #222339;
+            border-radius: 10px;
+            position: relative;
+            // max-width: 300px;
+            // width: 100%;
+            // min-width: 400px;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            // margin-right: 20px;
+
+
+            .testmonialImg {
+                position: absolute;
+                top: -15%;
+                background-color: #222339;
+                width: 60px;
+                height: 60px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                border: 1px solid green;
+
+                img {
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                }
+
+            }
+
+            h5 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+                line-height: 1.3rem;
+            }
+
+            p:nth-child(3) {
+                color: var(--blue);
+            }
+
+
+        }
+    }
+}
