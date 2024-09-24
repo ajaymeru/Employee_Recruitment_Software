@@ -25,9 +25,9 @@ const Testimonials = () => {
                 <p>There are many variations of passages available, but most have suffered alteration in some form by injected humour or randomised words.</p>
             </div>
             <div className="Testimonialscards">
-                <Slider {...settings}>
+                <Slider {...settings}  >
                     {testimonialjson.map((testimonial, index) => (
-                        <div className="Testimonialscard" key={index}>
+                        <div className="Testimonialscard" id="id" key={index}>
                             <div className="testmonialImg">
                                 <img src={testimonial.imagesrc} alt={testimonial.name} />
                             </div>

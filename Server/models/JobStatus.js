@@ -6,8 +6,8 @@ const jobStatusSchema = new mongoose.Schema({
     employer_id: {
         type: String,
     },
-    jobId: {
-        type: String,
+    jobId: {type: String,
+        
     },
     employee_Id: {
         type: String,

@@ -1,0 +1,12 @@
+.home {
+    // padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &>* {
+        // margin-bottom: 2rem;
+    }
+
+    
+}

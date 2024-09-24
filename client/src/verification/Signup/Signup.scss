@@ -1,0 +1,115 @@
+.signup-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+
+    .signup-form {
+        flex: 0.5;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; // Center vertically
+        background-color: #f9f9f9;
+        border-right: 1px solid #ddd;
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .user-type {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #2980b9;
+            }
+        }
+    }
+
+    .oauth-signup {
+        margin-top: 1.5rem;
+        text-align: center;
+
+        p {
+            margin-bottom: 0.5rem;
+        }
+
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: fit-content;
+
+            &:hover {
+                color: black;
+                background-color: #d3d3d3;
+            }
+
+            svg {
+                margin-right: 0.5rem;
+            }
+        }
+    }
+
+
+    .signup-image {
+        flex: 1;
+        display: flex;
+        align-items: center; // Center image vertically
+        justify-content: center; // Center image horizontally
+
+        img {
+            max-width: 100%;
+            height: auto; // Maintain aspect ratio
+        }
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+
+        .signup-form {
+            background-color: transparent;
+            border-right: none; // Remove border in mobile view
+            height: auto; // Allow form to take its natural height
+        }
+
+        .signup-image {
+            display: none; // Hide image in mobile view
+        }
+
+        & {
+            background: url('./assets/welcome.png') no-repeat center center fixed; // Background image
+            background-size: cover; // Cover the entire container
+            height: 100vh; // Ensure full height
+        }
+    }
+}

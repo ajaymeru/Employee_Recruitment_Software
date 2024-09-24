@@ -1,0 +1,84 @@
+.otp-verification-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 1100px;
+  max-height: 700px;
+  height: 100%;
+  
+
+
+  .otp-form {
+    flex: 0.5;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .otp-inputs {
+      display: flex;
+      gap: 10px;
+
+      input {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        font-size: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #2980b9;
+        }
+      }
+    }
+  }
+
+  .otp-image {
+    flex: 1;
+    display: flex;
+    align-items: center; // Center image vertically
+    justify-content: center; // Center image horizontally
+
+    img {
+      max-width: 100%;
+      height: auto; // Maintain aspect ratio
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+
+    .otp-form {
+      background-color: transparent;
+      border-right: none; // Remove border in mobile view
+      height: auto; // Allow form to take its natural height
+    }
+
+    .otp-image {
+      display: none; // Hide image in mobile view
+    }
+
+    & {
+      background: url('./assets/welcome.png') no-repeat center center fixed; // Background image
+      background-size: cover; // Cover the entire container
+      height: 100vh; // Ensure full height
+    }
+  }
+}

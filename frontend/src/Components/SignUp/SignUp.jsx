@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import "./SignUp.scss"
+import signup from "./assets/signup.png"
+import { Link } from 'react-router-dom';
+import { FaLinkedin } from "react-icons/fa6";
+import { FaGoogle } from "react-icons/fa";
+
+
+
 const Signup = () => {
     const [userType, setUserType] = useState('employee');
     const [formData, setFormData] = useState({
@@ -64,152 +71,144 @@ const Signup = () => {
 
                     {/* Conditional fields for Employee */}
                     {userType === 'employee' && (
-                        <div>
-                            <div>
-                                <label>
-                                    First Name:
-                                    <input
-                                        type="text"
-                                        name="firstName"
-                                        value={formData.firstName}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                        <div className='mainform'>
+                            <div className='submainform'>
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleChange}
+                                    placeholder="First Name"
+                                    required
+                                />
                             </div>
-                            <div>
-                                <label>
-                                    Last Name:
-                                    <input
-                                        type="text"
-                                        name="lastName"
-                                        value={formData.lastName}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                            <div className='submainform'>
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleChange}
+                                    placeholder="Last Name"
+                                    required
+                                />
                             </div>
-                            <div>
-                                <label>
-                                    Email:
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                            <div className='submainform'>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="Email"
+                                    required
+                                />
                             </div>
-                            <div>
-                                <label>
-                                    Phone Number:
-                                    <input
-                                        type="tel"
-                                        name="number"
-                                        value={formData.number}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                            <div className='submainform'>
+                                <input
+                                    type="tel"
+                                    name="number"
+                                    value={formData.number}
+                                    onChange={handleChange}
+                                    placeholder="Phone Number"
+                                    required
+                                />
                             </div>
-                            <div>
-                                <label>
-                                    Password:
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                            <div className='submainform'>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder="Password"
+                                    required
+                                />
                             </div>
                         </div>
                     )}
 
-
                     {/* Conditional fields for Employer */}
                     {userType === 'employer' && (
-                        <div>
-                            <div>
-                                <label>
-                                    Company Name:
-                                    <input
-                                        type="text"
-                                        name="companyName"
-                                        value={formData.companyName}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                        <div className='mainform'>
+                            <div className='submainform'>
+                                <input
+                                    type="text"
+                                    name="companyName"
+                                    value={formData.companyName}
+                                    onChange={handleChange}
+                                    placeholder="Company Name"
+                                    required
+                                />
                             </div>
-                            <div>
-                                <label>
-                                    Email:
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                            <div className='submainform'>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="Email"
+                                    required
+                                />
                             </div>
-                            <div>
-                                <label>
-                                    Phone Number:
-                                    <input
-                                        type="tel"
-                                        name="number"
-                                        value={formData.number}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                            <div className='submainform'>
+                                <input
+                                    type="tel"
+                                    name="number"
+                                    value={formData.number}
+                                    onChange={handleChange}
+                                    placeholder="Phone Number"
+                                    required
+                                />
                             </div>
-                            <div>
-                                <label>
-                                    Company Type:
-                                    <input
-                                        type="text"
-                                        name="companyType"
-                                        value={formData.companyType}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                            <div className='submainform'>
+                                <input
+                                    type="text"
+                                    name="companyType"
+                                    value={formData.companyType}
+                                    onChange={handleChange}
+                                    placeholder="Company Type"
+                                    required
+                                />
                             </div>
-                            <div>
-                                <label>
-                                    Address:
-                                    <input
-                                        type="text"
-                                        name="address"
-                                        value={formData.address}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                            <div className='submainform'>
+                                <input
+                                    type="text"
+                                    name="address"
+                                    value={formData.address}
+                                    onChange={handleChange}
+                                    placeholder="Address"
+                                    required
+                                />
                             </div>
-                            <div>
-                                <label>
-                                    Password:
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </label>
+                            <div className='submainform'>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder="Password"
+                                    required
+                                />
                             </div>
                         </div>
                     )}
 
                     {/* Submit Button */}
-                    <button type="submit">Register</button>
+                    <button type="submit" className='line-shade'>Register</button>
                 </form>
+                <div className="othersignupmethods">
+                    <div className="with">
+                        <p>Sign-Up With</p>
+                        <div className="icons">
+                            <Link><FaGoogle /></Link>
+                            <Link><FaLinkedin /></Link>
+                        </div>
+                    </div>
+                    <p>Already have an account? <Link to="./login">login</Link> </p>
+                </div>
+
+            </div>
+
+            <div className="signup-design">
+                
             </div>
         </div>
     );
