@@ -1,7 +1,8 @@
 import React from 'react';
 import './Home.scss';
 import Main from './components/Main/Main.jsx';
-import CompanyLogos from './components/companyLogos/CompanyLogos.jsx';
+// import CompanyLogos from './components/companyLogos/CompanyLogos.jsx';
+import CompanyLogos from "./components/companyLogos/companyLogos.jsx"
 import FollowSteps from './components/FollowSteps/FollowSteps.jsx';
 import JoinNow from './components/JoinNow/JoinNow.jsx';
 import Category from './components/Category/Category.jsx';
