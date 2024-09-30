@@ -2,23 +2,32 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 
 const jobSchema = new mongoose.Schema({
-    technologies: {
+    jobcompanyName: {
         type: String
     },
-    experience: {
+    jobRole: {
         type: String
     },
-    location: {
+    jobTechnologies: {
         type: String
     },
-    graduate: {
+    jobExperienceRequired: {
         type: String
     },
-    language: {
+    jobLocation: {
         type: String
     },
-    noticeperiod: {
+    jobGraduate: {
         type: String
+    },
+    language:{
+        type:String
+    },
+    jobNoticePeriod:{
+        type:String
+    },
+    jobDescription:{
+        type:String
     },
     employer_id: {
         type: String
@@ -28,11 +37,6 @@ const jobSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    // jobStatus: {
-    //     type: String,
-    //     enum: ["APPLIED", "NOT APPLIED"],
-    //     default: "NOT APPLIED"
-    // },
     employee_Id: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

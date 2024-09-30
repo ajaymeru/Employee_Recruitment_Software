@@ -2,4 +2,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--primaryfamily)
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+:root {
+    --primary: #B9C7DA;
+    --secondary: #c1cdde;
+    --third: #c8d3e2;
+    --four: #d0d9e6;
+    --five: #d8e0ea;
+    --six: #e0e6ee;
+    --boxshadowoutset: -5px -5px 10px 0px rgba(255, 255, 255, 0.5), 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    --boxshadowinset: inset -5px -5px 10px 0px rgba(255, 255, 255, 0.5), inset 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    /* --primarycolor: black; */
+    /* --primaryfamily: "Playpen Sans", cursive; */
+    --primaryfamily: "Patrick Hand", cursive;
+
 }

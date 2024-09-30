@@ -1,12 +1,12 @@
 import React from 'react';
 import './Home.scss';
 import Main from './components/Main/Main.jsx';
-// import CompanyLogos from './components/companyLogos/CompanyLogos.jsx';
-import CompanyLogos from "./components/companyLogos/companyLogos.jsx"
+import CompanyLogos from './components/companyLogos/CompanyLogos.jsx';
 import FollowSteps from './components/FollowSteps/FollowSteps.jsx';
 import JoinNow from './components/JoinNow/JoinNow.jsx';
 import Category from './components/Category/Category.jsx';
 import Testimonial from './components/Testimonial/Testimonial.jsx';
+import Accordian from '../Findjobs/Accordian/Accordian.jsx';
 
 
 const Home = () => {
@@ -18,6 +18,7 @@ const Home = () => {
             <JoinNow />
             <Category />
             <Testimonial />
+            <Accordian />
         </div>
     );
 };

@@ -20,7 +20,6 @@ const Login = () => {
     e.preventDefault();
     console.log('Login submitted:', formData);
 
-    // API call to login
     try {
       const response = await fetch('http://localhost:4000/api/v1/users/login', {
         method: 'POST',
@@ -33,20 +32,17 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Store the token if needed (optional)
-        localStorage.setItem('token', data.token); // Example of storing the token
+        localStorage.setItem('token', data.token); 
         console.log(data.message);
-        // Navigate to the home page
         navigate('/');
       } else {
-        alert(data.message); // Show error message if login fails
+        alert(data.message); 
       }
     } catch (error) {
       console.error('Error during login:', error);
       alert('An error occurred during login. Please try again.');
     }
 
-    // Clear the form data after submission
     setFormData({
       email: '',
       password: '',
@@ -55,7 +51,6 @@ const Login = () => {
 
   const handleOAuthLogin = (provider) => {
     console.log(`Login with ${provider}`);
-    // Add logic for OAuth login here
   };
 
   return (

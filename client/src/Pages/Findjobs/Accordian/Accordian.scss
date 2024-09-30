@@ -1,0 +1,103 @@
+.Accordian {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    padding-bottom: 3%;
+
+    .accordionStyle {
+        flex: 1;
+        position: relative;
+
+        .inimg {
+            width: 90%;
+            height: 80vh;
+            max-height: 700px;
+            min-width: 320px;
+            max-width: 500px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+
+            }
+
+        }
+
+        .outimg {
+            width: 40%;
+            height: 40vh;
+            max-height: 350px;
+            position: absolute;
+            bottom: -5%;
+            right: 5%;
+            padding: 10px;
+            border: 1px solid grey;
+            border-radius: 10px;
+            background-color: white;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+    }
+
+    .accordianQA {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        // gap: 30px;
+        justify-content: space-around;
+
+        .faq {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            h5 {
+                font-size: 2rem;
+
+            }
+
+            p {
+                font-size: 1rem;
+                // color: rgb(148, 163, 184);
+                color: grey;
+
+            }
+        }
+
+        .faqbox {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .main {
+                margin: 0;
+                background-color: transparent;
+                box-shadow: none;
+                border: none;
+
+                .questionBox {
+                    background-color: var(--secondary);
+                    border-radius: 10px;
+
+                    .question {
+                        color: rgb(59, 130, 246);
+                        font-size: 1rem;
+                        font-weight: 500;
+                    }
+                }
+
+                .answerBox {
+                    .answer {
+                        color: grey;
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -12,6 +12,8 @@ import FindCompanies from './Pages/FindCompanies/FindCompanies.jsx';
 import Signup from './verification/Signup/Signup.jsx';
 import Login from './verification/login/Login.jsx';
 import OtpVerification from './verification/otpverfiy/OtpVerification.jsx';
+import ApplyJob from './Pages/Findjobs/searchjobs/ApplyJob/ApplyJob.jsx';
+import CompanyDetails from './Pages/FindCompanies/Employers/CompanyDetails/CompanyDetails.jsx';
 
 const App = () => {
   const location = useLocation();
@@ -27,6 +29,8 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/otpverification" element={<OtpVerification />} />
+        <Route path='/jobs/:jobId' element={<ApplyJob />} />
+        <Route path='/companies/:companyId' element={<CompanyDetails />} />
       </Routes>
       {!noNavFooterPaths.includes(location.pathname) && <Footer />}
     </div>

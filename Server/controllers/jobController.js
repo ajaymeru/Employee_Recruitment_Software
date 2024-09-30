@@ -1,5 +1,6 @@
 const { Joblist } = require("../models/jobSchema");
-const jobStatus  = require("../models/JobStatus")
+const jobStatus = require("../models/JobStatus")
+const User = require("../models/userSchema");
 const { v4: uuidv4 } = require("uuid")
 
 
@@ -27,11 +28,11 @@ const showallJobs = async (req, res) => {
 
 // Create a job post
 const createJobPost = async (req, res) => {
-    const { technologies, experience, location, graduate, language, noticeperiod } = req.body;
+    const { jobcompanyName, jobRole, jobTechnologies, jobExperienceRequired, jobLocation, jobGraduate, language, jobNoticePeriod, jobDescription } = req.body;
     const employer_id = req.user._id
     try {
         const jobId = uuidv4();
-        const newjob = new Joblist({ technologies, experience, location, graduate, language, noticeperiod, employer_id, jobId });
+        const newjob = new Joblist({ jobcompanyName, jobRole, jobTechnologies, jobExperienceRequired, jobLocation, jobGraduate, language, jobNoticePeriod, jobDescription, employer_id, jobId });
         const job = await newjob.save();
         res.status(200).json({ job });
     } catch (err) {
@@ -92,36 +93,37 @@ const deletejob = async (req, res) => {
 }
 
 const applyForJob = async (req, res) => {
-    const { jobId } = req.params
-    const employee_Id = req.user._id
-    console.log(employee_Id);
-    try {
-        const [job] = await Joblist.find({ jobId: jobId })
-        if (!job) {
-            return res.status(404).json({ message: "Job not found" })
-        }
-        console.log(job);
-        const employer_id = job.employer_id
-        console.log(employer_id);
-        const status = await jobStatus.find({ employee_Id: employee_Id, jobId: jobId })
-        console.log(status);
-        
+    const { jobId } = req.params;
+    const employee_Id = req.user._id; // Assuming you are getting the employee ID from the authenticated user
 
-        if (status.length > 0) {
-            return res.status(400).json({ message: "Already applied for this role " })
+    try {
+        // Find the job by jobId
+        const [job] = await Joblist.find({ jobId: jobId });
+        if (!job) {
+            return res.status(404).json({ message: "Job not found" });
         }
+
+        const employer_id = job.employer_id;
+
+        // Check if the user has already applied for the job
+        const status = await jobStatus.find({ employee_Id: employee_Id, jobId: jobId });
+        if (status.length > 0) {
+            return res.status(400).json({ message: "Already applied for this role" });
+        }
+
+        // Save new application status
         const newJobStatus = new jobStatus({
             jobId: jobId,
             employer_id: employer_id,
-            employee_Id: employee_Id
-        })
-        await newJobStatus.save()
-        return res.status(200).json({ message: "job applied sucessfully" })
-    } catch (error) {
-        return res.status(400).json({ message: error.message })
-    }
+            employee_Id: employee_Id,
+        });
+        await newJobStatus.save();
 
-}
+        return res.status(200).json({ message: "Job applied successfully" });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
+};
 
 const appliedfetchjobs = async (req, res) => {
     const userId = req.user._id;
@@ -152,4 +154,26 @@ const appliedfetchjobs = async (req, res) => {
     }
 };
 
-module.exports = { createJobPost, showallJobs, editJobpost, deletejob, getjobByID, getJobs, applyForJob, appliedfetchjobs }
+const findEmployerOrEmployee = async (req, res) => {
+    const userId = req.user._id;
+    const userRole = req.user.role;
+    try {
+        let users;
+        if (userRole === "EMPLOYER") {
+            users = await User.find({ role: "EMPLOYEE" });
+        }
+        else if (userRole === "EMPLOYEE") {
+            users = await User.find({ role: "EMPLOYER" });
+        }
+        if (users) {
+            return res.status(200).json({ users });
+        } else {
+            return res.status(404).json({ message: "No matching users found." });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: "Internal server error", error: err.message });
+    }
+};
+
+
+module.exports = { createJobPost, showallJobs, editJobpost, deletejob, getjobByID, getJobs, applyForJob, appliedfetchjobs, findEmployerOrEmployee };

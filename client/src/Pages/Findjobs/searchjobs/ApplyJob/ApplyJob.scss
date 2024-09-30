@@ -1,0 +1,42 @@
+.ApplyJob {
+    margin-top: 10vh;
+}
+
+
+.modal {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.modal .header {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.modal .content {
+    margin: 15px 0;
+}
+
+.modal .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.apply-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.apply-btn:hover {
+    background-color: #45a049;
+}

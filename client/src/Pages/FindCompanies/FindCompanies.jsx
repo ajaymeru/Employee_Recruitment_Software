@@ -1,8 +1,14 @@
 import React from 'react'
+import Employers from './Employers/Employers'
+import "./FindCompanies.scss"
+import Accordian from "../Findjobs/Accordian/Accordian"
 
 const FindCompanies = () => {
   return (
-    <div>FindCompanies</div>
+    <div className='FindCompanies'>
+      <Employers />
+      <Accordian />
+    </div>
   )
 }
 

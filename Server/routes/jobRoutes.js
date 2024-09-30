@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const { createJobPost, showallJobs, getjobByID, editJobpost, deletejob, getJobs, applyForJob, appliedfetchjobs } = require("../controllers/jobController")
+const { createJobPost, showallJobs, getjobByID, editJobpost, deletejob, getJobs, applyForJob, appliedfetchjobs, findEmployerOrEmployee } = require("../controllers/jobController")
 
 const { userRoleMiddleware, checkRole } = require("../middleware/usermiddleware")
 
@@ -12,6 +12,7 @@ router.get("/employee/fetchjobs", checkRole("EMPLOYEE"), appliedfetchjobs) //wor
 router.get("/jobs", checkRole("EMPLOYEE"), getJobs)  //working 
 router.get("/employee/:jobId", checkRole("EMPLOYEE"), getjobByID) //working 
 router.patch("/jobs/:jobId/apply", checkRole("EMPLOYEE"), applyForJob); //working
+router.get("/employers", checkRole("EMPLOYEE"), findEmployerOrEmployee)
 
 // ___________________EMPLOYER_____________________
 router.use(checkRole("EMPLOYER"))
@@ -27,6 +28,7 @@ router.get("/employer/:jobId", getjobByID) //working //done
 router.patch("/:jobId", editJobpost); //working //done
 
 router.delete("/:jobId", deletejob) //working //done
+router.get("/employees", checkRole("EMPLOYER"), findEmployerOrEmployee)
 
 
 module.exports = router
