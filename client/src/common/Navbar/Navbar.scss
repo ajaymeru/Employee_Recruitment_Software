@@ -15,7 +15,6 @@
     &__hamburger {
         font-size: 1.5rem;
         cursor: pointer;
-        // color: white;
         display: none;
     }
 
@@ -23,7 +22,6 @@
         font-size: 1.5rem;
 
         a {
-            // color: white;
             text-decoration: none;
             font-weight: bold;
         }
@@ -43,34 +41,8 @@
             }
         }
 
-        // Dropdown styles
-        &__profile {
-            position: relative;
-            display: inline-block;
-
-            &__dropdown {
-                position: absolute;
-                right: 0;
-                background-color: var(--primary);
-                border: 1px solid #ccc;
-                z-index: 1000; // Ensure it appears above other elements
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                padding: 10px;
-
-                a,
-                button {
-                    display: block;
-                    padding: 5px 10px;
-                    text-decoration: none;
-                    color: black;
-                }
-
-                button {
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                }
-            }
+        &.active {
+            transform: translateX(0);
         }
     }
 
@@ -79,11 +51,67 @@
         gap: 1rem;
 
         a {
-            // color: white;
             text-decoration: none;
 
             &:hover {
                 text-decoration: underline;
+            }
+        }
+
+        &__profile {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+    }
+
+    &__mega-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        // width: 300px;
+        display: flex;
+        justify-content: space-around;
+        padding: 20px 50px;
+        z-index: 1000;
+        background-color: var(--primary);
+        border-radius: 20px 0 0 20px;
+
+        .mega-menu {
+            display: flex;
+            flex-direction: row;
+
+            &-section {
+                // margin: 0 20px;
+
+                h4 {
+                    margin-bottom: 10px;
+                }
+
+                a {
+                    display: block;
+                    padding: 5px 0;
+                    text-decoration: none;
+                    color: black;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                button {
+                    display: block;
+                    padding: 5px 0;
+                    background: none;
+                    border: none;
+                    color: black;
+                    cursor: pointer;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
             }
         }
     }

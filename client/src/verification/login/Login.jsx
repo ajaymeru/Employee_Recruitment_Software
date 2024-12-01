@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../Signup/Signup.scss';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import welcomeImage from '../Signup/assets/welcome.png';
@@ -9,7 +9,7 @@ const Login = () => {
     email: '',
     password: '',
   });
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,11 +32,11 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('token', data.token); 
+        localStorage.setItem('token', data.token);
         console.log(data.message);
         navigate('/');
       } else {
-        alert(data.message); 
+        alert(data.message);
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -78,6 +78,7 @@ const Login = () => {
         </form>
 
         <div className="oauth-signup">
+          <p>Dont have an account? <Link to="/signup">Signup</Link> </p>
           <p>Or login with:</p>
           <button onClick={() => handleOAuthLogin('Google')}>
             <FaGoogle /> Google

@@ -1,5 +1,5 @@
 import React from 'react'
-import Employers from './Employers/Employers'
+import Employers from './Employers/Employers.jsx'
 import "./FindCompanies.scss"
 import Accordian from "../Findjobs/Accordian/Accordian"
 

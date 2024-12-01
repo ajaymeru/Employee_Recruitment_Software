@@ -81,10 +81,11 @@ const SearchJobs = () => {
                             <GrUserWorker />
                             <select name="" id="">
                                 <option value="">Fresher</option>
+                                <option value="">0-1</option>
                                 <option value="">1-2</option>
                                 <option value="">2-4</option>
-                                <option value="">4-6</option>
-                                <option value="">6+</option>
+                                <option value="">4-8</option>
+                                <option value="">8-16</option>
                             </select>
                         </div>
                         <div className="form-group">
@@ -110,7 +111,7 @@ const SearchJobs = () => {
                     <div className="job-card" key={job._id}>
 
                         <div className="companyinfo">
-                            <h3>Company Name: {job.jobcompanyName}</h3>
+                            <h3 style={{textAlign:"center"}}>{job.jobcompanyName}</h3>
                             <button onClick={() => handleApply(job.jobId)} >Apply</button>
                         </div>
 

@@ -12,4 +12,3 @@ const connectDB = async () => {
     }
 }
 connectDB()
-

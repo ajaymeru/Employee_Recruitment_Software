@@ -3,7 +3,7 @@ import './Signup.scss';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import welcomeImage from './assets/welcome.png';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Signup = () => {
   const navigate = useNavigate(); // Initialize useNavigate
@@ -202,6 +202,7 @@ const Signup = () => {
         </form>
 
         <div className="oauth-signup">
+          <p>Already have an account? <Link to="/login">Login</Link> </p>
           <p>Or sign up with:</p>
           <button onClick={() => handleOAuthSignup('Google')}>
             <FaGoogle /> Google
@@ -219,3 +220,4 @@ const Signup = () => {
 };
 
 export default Signup;
+  

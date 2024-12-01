@@ -14,6 +14,7 @@ import Login from './verification/login/Login.jsx';
 import OtpVerification from './verification/otpverfiy/OtpVerification.jsx';
 import ApplyJob from './Pages/Findjobs/searchjobs/ApplyJob/ApplyJob.jsx';
 import CompanyDetails from './Pages/FindCompanies/Employers/CompanyDetails/CompanyDetails.jsx';
+import Myprofile from './Userinfo/MyProfile/Myprofile.jsx';
 
 const App = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/otpverification" element={<OtpVerification />} />
         <Route path='/jobs/:jobId' element={<ApplyJob />} />
         <Route path='/companies/:companyId' element={<CompanyDetails />} />
+        <Route path='/profile' element={<Myprofile />} />
       </Routes>
       {!noNavFooterPaths.includes(location.pathname) && <Footer />}
     </div>

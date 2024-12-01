@@ -4,12 +4,19 @@ import Avatar from '@mui/material/Avatar';
 import './Navbar.scss';
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);  // For hamburger menu
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);  // For avatar dropdown menu
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    setProfileMenuOpen(false);  // Close profile menu when opening hamburger menu
+  };
+
+  const toggleProfileMenu = () => {
+    setProfileMenuOpen(!profileMenuOpen);
+    setMenuOpen(false);  // Close hamburger menu when opening profile menu
   };
 
   const fetchUserDetails = async () => {
@@ -24,7 +31,7 @@ const Navbar = () => {
         });
         const data = await response.json();
         if (response.ok) {
-          setUser(data.user);
+          setUser(data.user);  // Ensure the user object contains role property
         } else {
           console.error(data.message);
         }
@@ -44,6 +51,31 @@ const Navbar = () => {
     fetchUserDetails();
   }, []);
 
+  const renderEmployeeMenu = () => (
+    <div className="mega-menu">
+      <div className="mega-menu-section">
+        <Link to="/profile">My Profile</Link>
+        <Link to="/resume">My Resume</Link>
+        <Link to="/applied-jobs">Applied Jobs</Link>
+        <Link to="/saved-jobs">Saved Jobs</Link>
+        <Link to="/change-password">Change Password</Link>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
+    </div>
+  );
+
+  const renderEmployerMenu = () => (
+    <div className="mega-menu">
+      <div className="mega-menu-section">
+        <Link to="/profile">My Profile</Link>
+        <Link to="/post-job">Post Job</Link>
+        <Link to="/manage-jobs">Manage Jobs</Link>
+        <Link to="/change-password">Change Password</Link>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
+    </div>
+  );
+
   return (
     <nav className="navbar">
       <div className="navbar__hamburger" onClick={toggleMenu}>
@@ -62,12 +94,11 @@ const Navbar = () => {
 
       <div className="navbar__auth">
         {user ? (
-          <div className="navbar__profile">
-            <Avatar onClick={toggleMenu} />
-            {menuOpen && (
-              <div className="navbar__dropdown">
-                <Link to="/profile">Profile</Link>
-                <button onClick={handleLogout}>Logout</button>
+          <div className="navbar__profile" onClick={toggleProfileMenu}>
+            <Avatar />
+            {profileMenuOpen && (
+              <div className="navbar__mega-dropdown">
+                {user.role === 'EMPLOYEE' ? renderEmployeeMenu() : renderEmployerMenu()}
               </div>
             )}
           </div>
